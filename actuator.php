@@ -19,8 +19,8 @@ try {
 } catch (mysqli_sql_exception) {
     echo"connection is failed";
 }
-function fetchGaugeData($conn) {
-    $query = "SELECT * FROM `sensors` ORDER BY id DESC"; 
+function fetchSensorData($conn) {
+    $query = "SELECT * FROM `actuators` ORDER BY id DESC"; 
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -31,10 +31,10 @@ function fetchGaugeData($conn) {
     }
 }
 
-if (isset($_GET['action']) && $_GET['action'] == 'fetchGaugeValue') {
-    $data = fetchGaugeData($conn);
+if (isset($_GET['action']) && $_GET['action'] == 'fetchWaterSensors') {
+    $data = fetchSensorData($conn);
     echo json_encode($data);
     exit;
 }
 
-?>
+?> 
